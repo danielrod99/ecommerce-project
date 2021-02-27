@@ -5,7 +5,9 @@ import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils';
 
 import './header.style.scss';
-
+import CartIcon from '../../components/cart-icon/cart-icon.component'
+import ProfileImg from '../../components/profile-img/profile-img.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 const Header = ({ currentUser }) => {
     return <div className='header'>
         <Link className='logo-container' to='/'>
@@ -23,11 +25,20 @@ const Header = ({ currentUser }) => {
             </Link>
             </div>
             <div className='option'>
-                {
-                    currentUser ? <div className='option' onClick={() => { auth.signOut(); }}>SIGN OUT</div> : <Link to='/signIn'>SIGN IN</Link>
-                }
+                <div className='suboption'>
+                    {
+                      currentUser ? <ProfileImg url={currentUser.currentUser.photoURL} /> : <div></div>
+
+                    }
+                    {
+                        currentUser ? <div onClick={() => { auth.signOut(); }}>SIGN OUT</div> : <Link to='/signIn'>SIGN IN</Link>
+                    }
+                </div>
+
             </div>
+            <CartIcon></CartIcon>
         </div>
+        <CartDropdown></CartDropdown>
     </div>
 }
 const mapStateToProps = (state) => ({
