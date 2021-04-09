@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { sdk } from './firebase-sdk';
+import sdk from './firebase-sdk';
 
 const config = sdk;
 
